@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AMDG - Login / Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1 class="logo">AMDG</h1>
+      <h2>Sign in to your account</h2>
+      
+      <!-- Tombol Connect Wallet (selalu tampil) -->
+      <button class="btn" id="connectWalletButton">Connect Wallet</button>
+      
+      <!-- Bagian registrasi (disembunyikan default, hanya muncul jika user belum terdaftar) -->
+      <div id="registrationSection" class="hidden">
+        <input 
+          type="text" 
+          id="username" 
+          placeholder="Username" 
+          class="input"
+        >
+        <button class="btn" id="registerButton">Register</button>
+      </div>
+      
+      <!-- Bagian login (disembunyikan default, hanya muncul jika user sudah terdaftar) -->
+      <div id="loginSection" class="hidden">
+        <button class="btn" id="loginButton">Login</button>
+      </div>
+      
+      <!-- Dark mode toggle (opsional) -->
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+        <!-- Label mode yang berubah -->
+        <span id="modeLabel" class="toggle-label">Dark Mode</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ethers.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+  
+  <!-- login.js -->
+  <script src="login.js"></script>
+  
+  <!-- Dark mode toggle handler (opsional) -->
+  <script>
+     const toggle = document.getElementById("darkModeToggle");
+  const modeLabel = document.getElementById("modeLabel");
+
+  // Cek preferensi user di localStorage
+  if (localStorage.getItem("darkMode") === "true") {
+    toggle.checked = true;
+    document.body.classList.add("dark");
+    modeLabel.textContent = "Dark Mode";
+  } else {
+    toggle.checked = false;
+    document.body.classList.remove("dark");
+    modeLabel.textContent = "Light Mode";
+  }
+
+  // Event saat toggle diklik
+  toggle.addEventListener("change", () => {
+    if (toggle.checked) {
+      // Aktifkan dark mode
+      document.body.classList.add("dark");
+      modeLabel.textContent = "Dark Mode";
+      localStorage.setItem("darkMode", "true");
+    } else {
+      // Nonaktifkan dark mode
+      document.body.classList.remove("dark");
+      modeLabel.textContent = "Light Mode";
+      localStorage.setItem("darkMode", "false");
+    }
+  });
+  </script>
+</body>
+</html>
