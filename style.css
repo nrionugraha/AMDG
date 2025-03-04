@@ -219,7 +219,7 @@ body.dark .btn {
   color: #fff;
 }
 
-/* Tombol khusus seperti like & comment dapat menggunakan kelas tambahan, misal: */
+
 .like-btn, .comment-btn {
   background-color: transparent;
   border: none;
@@ -295,7 +295,7 @@ body.dark .login-container {
 .login-card {
   background-color: #fff;
   border: 1px solid #e6ecf0;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Tambahkan shadow */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
   border-radius: 8px;
   padding: 40px;
   width: 350px;
@@ -360,6 +360,7 @@ body.dark .new-tweet {
 }
 
 .card {
+  position: relative;
   background-color: #fff;
   border: 1px solid #e6ecf0;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Tambahkan shadow */
@@ -421,19 +422,15 @@ body.dark .wallet-address {
 .my-comments h3 {
   margin-bottom: 10px;
 }
-/* Contoh style tambahan / penyesuaian */
 
-/* Supaya area Like, input, dan Comment tersusun rapi */
 .comment-section {
   display: flex;
   align-items: center;
-  gap: 10px; /* Jarak antar elemen */
+  gap: 10px; 
 }
 
-/* Tombol Like dan Comment memakai style dasar .btn,
-   lalu bisa ditambah style khusus di .like-btn, .comment-btn */
 .like-btn, .comment-btn {
-  background-color: #1da1f2; /* Sama dengan .btn */
+  background-color: #1da1f2; 
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -447,17 +444,13 @@ body.dark .wallet-address {
   background-color: #0d95e8;
 }
 
-/* Input field komentar bulat (rounded edge) */
 .comment-input {
   border-radius: 25px;
-  margin: 0; /* Hilangkan margin default jika perlu */
-  flex: 1;   /* Supaya input bisa melebar */
+  margin: 0; 
+  flex: 1; 
 }
 
-/* Pastikan .logout tetap terlihat seperti tombol .btn atau varian */
 .logout {
-  /* Jika ingin menyamakan dengan .btn
-     boleh gunakan .btn juga, atau style berbeda seperti outline */
   background-color: transparent;
   color: #1da1f2;
   border: 1px solid #1da1f2;
@@ -474,22 +467,19 @@ body.dark .wallet-address {
 .hidden {
   display: none;
 }
-/* Bagian container Like/Comment + input komentar */
 
 .comment-section {
 display: flex;
 align-items: center;
-gap: 10px; /* Jarak antar elemen */
+gap: 10px; 
 }
 
-/* Tombol ikon dasar */
 actions {
 display: flex;
 align-items: center;
-gap: 16px; /* Jarak horizontal antar ikon */
+gap: 16px; 
 }
 
-/* Tombol ikon dasar */
 .icon-btn {
   width: 36px;
   height: 36px;
@@ -507,32 +497,27 @@ gap: 16px; /* Jarak horizontal antar ikon */
 }
 
 
-
-/* Efek lingkaran berwarna saat hover */
 .icon-btn:hover {
-background-color: rgba(29,161,242,0.1); /* Biru transparan ala Twitter */
+background-color: rgba(29,161,242,0.1); 
 }
 
-/* Style ikon Heart & Comment */
 .icon-heart,
 .icon-comment {
 width: 20px;
 height: 20px;
-stroke: #8899a6;  /* Warna abu-abu netral (terlihat di light/dark mode) */
+stroke: #8899a6;  
 fill: none;
 transition: stroke 0.2s ease;
 }
 
-/* Saat tombol di-hover, ubah warna stroke ikon */
 .icon-btn:hover .icon-heart,
 .icon-btn:hover .icon-comment {
-stroke: #1da1f2;  /* Biru Twitter */
+stroke: #1da1f2;
 }
 
-/* Jika Anda punya dark mode (misalnya body.dark), override warna default */
 body.dark .icon-heart,
 body.dark .icon-comment {
-stroke: #8899a6; /* atau warna lain yang kontras di dark mode */
+stroke: #8899a6; 
 }
 
 body.dark .icon-btn:hover .icon-heart,
@@ -553,27 +538,60 @@ body.dark .icon-btn.liked:hover .icon-heart {
 stroke: rgba(29,161,242,0.1);
 }
 
+
+/* Tombol Delete di pojok kanan atas */
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+/* Ikon trash */
+.icon-trash {
+  width: 18px;
+  height: 18px;
+  stroke: #657786;
+  fill: none;
+  transition: stroke 0.2s ease;
+}
+
+/* Efek hover: background merah, ikon putih */
+.delete-btn:hover {
+  background-color: #e0245e; /* Warna merah */
+}
+.delete-btn:hover .icon-trash {
+  stroke: #fff;
+}
+
 .tweet-meta {
-font-family: "SF Pro Text", sans-serif; /* Pastikan SF Pro Text sudah diimport */
-font-weight: 00;        /* Light / 300 weight */
-font-size: 0.85em;       /* Lebih kecil dari default 1em */
-color: #657786;          /* Warna abu-abu netral (opsional) */
-white-space: normal;     /* Mengizinkan teks untuk wrap */
-overflow-wrap: break-word; /* Memecah kata jika diperlukan */
-word-break: break-all;   /* Paksa pemecahan kata bila string sangat panjang */
+font-family: "SF Pro Text", sans-serif; 
+font-weight: 00;       
+font-size: 0.85em;       
+color: #657786;          
+white-space: normal;     
+overflow-wrap: break-word; 
+word-break: break-all;   
 }
 
   
- /* === Responsive Styles === */
+ /* === Responsive Media === */
 @media (max-width: 768px) {
-  /* Mengatur ukuran container agar tidak terlalu lebar */
   .feed-container, .profile-container, .login-card {
     width: 90%;
     padding: 15px;
     margin: 10px auto;
   }
 
-  /* Perbesar ukuran tombol dan input agar lebih mudah di-klik di layar kecil */
   .icon-btn {
     display: inline-flex !important;
     width: 36px;
@@ -585,26 +603,23 @@ word-break: break-all;   /* Paksa pemecahan kata bila string sangat panjang */
     font-size: 1em;
   }
   
-  /* Sesuaikan ukuran font untuk teks agar lebih mudah dibaca */
   body {
     font-size: 1em;
   }
   
-  /* Sesuaikan ukuran font untuk elemen meta (misalnya tweet-meta) */
   .tweet-meta {
     font-size: 0.8em;
   }
   
-  /* Perbaiki jarak antar elemen agar tidak terlalu rapat */
   .card, .login-card {
     padding: 15px;
     margin-bottom: 15px;
   }
 }
 
-/* Media query untuk perangkat yang lebih kecil lagi, misal max-width: 480px */
+/* Responsive Media Small */
+
 @media (max-width: 480px) {
-  /* Perbesar tombol agar mudah diklik */
   .icon-btn {
     display: inline-flex !important;
     width: 36px;
@@ -616,7 +631,6 @@ word-break: break-all;   /* Paksa pemecahan kata bila string sangat panjang */
     font-size: 1.1em;
   }
   
-  /* Sesuaikan container agar mengisi layar */
   .login-card, .feed-container, .profile-container {
     width: 95%;
     padding: 10px;
