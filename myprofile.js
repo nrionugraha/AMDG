@@ -32,7 +32,9 @@ async function initProfile() {
     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
     const userAddress = await signer.getAddress();
-    document.getElementById("walletAddress").innerText = "Wallet: " + userAddress;
+    const walletElem = document.getElementById("walletAddress");
+    walletElem.innerText = "Wallet: " + userAddress;
+    walletElem.classList.add("tweet-meta");
 
     // Ambil data registrasi user (username)
     const userInfo = await contract.users(userAddress);
@@ -54,26 +56,21 @@ async function initProfile() {
 async function loadMyTweets(userAddress) {
   const myTweetsDiv = document.getElementById("myTweets");
   myTweetsDiv.innerHTML = "<h3>My Tweets</h3>";
-
   const myDeletedTweetsDiv = document.getElementById("myDeletedTweets");
   myDeletedTweetsDiv.innerHTML = "<h3>Deleted Tweets</h3>";
-
   try {
     const tweetCountBN = await contract.tweetCount();
     const tweetCount = tweetCountBN.toNumber();
 
     for (let i = tweetCount; i > 0; i--) {
       const tweet = await contract.tweets(i - 1);
-      // Pastikan tweet.author adalah user ini
       if (tweet.author.toLowerCase() === userAddress.toLowerCase()) {
-        // Konversi tweet.id ke Number
         const tweetId = tweet.id.toNumber();
-
-        // Ambil jumlah komentar, dsb.
-        const commentCountBN = await contract.commentCount();
-        const totalComments = commentCountBN.toNumber();
         let tweetCommentCount = 0;
         let tweetCommentsHtml = "";
+
+        const commentCountBN = await contract.commentCount();
+        const totalComments = commentCountBN.toNumber();
 
         for (let j = 1; j <= totalComments; j++) {
           try {
@@ -83,10 +80,9 @@ async function loadMyTweets(userAddress) {
               const userData = await contract.users(comment.author);
               const commentUsername = userData[0];
               tweetCommentsHtml += `
-                <p style="font-size:0.9em; margin-left:10px;">
+                <p class="tweet-comment">
                   <strong>${commentUsername}</strong><br>
-                  <span style="font-weight: normal; font-size:0.8em;">${comment.author}</span>: ${comment.text}
-                  <span style="font-size:0.8em;color:gray;">(${new Date(comment.timestamp.toNumber() * 1000).toLocaleString()})</span>
+                  <span class="tweet-meta">${comment.author} - (${new Date(comment.timestamp.toNumber() * 1000).toLocaleString()})</span>: ${comment.text}<br>
                 </p>
               `;
             }
@@ -95,30 +91,24 @@ async function loadMyTweets(userAddress) {
           }
         }
 
-        // Buat tampilan tweet card
         const tweetCard = document.createElement("div");
+        const userData = await contract.users(tweet.author);  
+        const username = userData[0];
         tweetCard.className = "card";
         tweetCard.innerHTML = `
           <p>
-            <strong>${tweet.author}</strong> - ${new Date(tweet.timestamp.toNumber() * 1000).toLocaleString()}
+            <strong>${username}</strong><br>
+            <span class="tweet-meta">${tweet.author} - ${new Date(tweet.timestamp.toNumber() * 1000).toLocaleString()}</span>
           </p>
-          <p>${tweet.text}</p>
-          ${
-            tweet.imageUrl
-              ? `<img src="${tweet.imageUrl}" alt="Tweet Image" style="max-width:100%; border-radius:8px;">`
-              : ""
-          }
-          <p>Likes: ${tweet.likeCount}</p>
-          <p>Comments: ${tweetCommentCount}</p>
-          <div>${tweetCommentsHtml}</div>
+          <p class="tweet-text">${tweet.text}</p>
+          ${tweet.imageUrl ? `<img class="tweet-img" src="${tweet.imageUrl}" alt="Tweet Image">` : ""}
+          <p class="tweet-stats">Likes: ${tweet.likeCount} | Comments: ${tweetCommentCount}</p>
+          <div class="tweet-comments">${tweetCommentsHtml}</div>
         `;
 
-        // CEK apakah tweet ini deleted
         if (tweet.deleted) {
-          // Masukkan ke "Deleted Tweets"
           myDeletedTweetsDiv.appendChild(tweetCard);
         } else {
-          // Masukkan ke "My Tweets"
           myTweetsDiv.appendChild(tweetCard);
         }
       }
@@ -127,6 +117,7 @@ async function loadMyTweets(userAddress) {
     console.error("Error loading tweets:", error);
   }
 }
+
 
 
 /**
