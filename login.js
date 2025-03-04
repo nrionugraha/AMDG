@@ -4,7 +4,7 @@
  */
 
 // Ganti dengan alamat smart contract hasil deploy
-const CONTRACT_ADDRESS = "0x892b48df1a85bB146f27FB7eA1A43367e849421B";
+const CONTRACT_ADDRESS = "0x789FB401acBA27e8fAeC793CC392536Da43BdB52";
 
 // ABI sederhana dari kontrak AMDG (hanya fungsi yang diperlukan untuk login/registrasi)
 const CONTRACT_ABI = [
