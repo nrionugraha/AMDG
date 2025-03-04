@@ -1,6 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 
-const privateKey = "ddf8b628eec1be234a083c2fe97d303961bf291f5d194f86b4e79836b2d42a94";
+const privateKey = "PRIVATE_KEY";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
