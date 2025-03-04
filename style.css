@@ -594,6 +594,10 @@ word-break: break-all;
   word-break: break-all;
 }
 
+body.dark .user-name {
+  color : white
+}
+
   
  /* === Responsive Media === */
 @media (max-width: 768px) {
