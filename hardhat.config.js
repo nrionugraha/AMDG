@@ -10,7 +10,7 @@ module.exports = {
   hardhat: {
     },
   sepolia: {
-    url: "https://sepolia.infura.io/v3/cdb76b86ed444a33891442a4ebb8ad7b",
+    url: "https://sepolia.infura.io/v3/<key>",
     accounts: [privateKey]
     }
   }
