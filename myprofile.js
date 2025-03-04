@@ -39,7 +39,10 @@ async function initProfile() {
     // Ambil data registrasi user (username)
     const userInfo = await contract.users(userAddress);
     const username = userInfo[0];
-    document.getElementById("username").innerText = "Username: " + username;
+    const userElem = document.getElementById("username");
+    userElem.innerText = "Username:\n " + username;
+    userElem.classList.add("user-name");
+    
 
     // Muat tweet yang diposting oleh user
     loadMyTweets(userAddress);

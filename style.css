@@ -584,6 +584,16 @@ overflow-wrap: break-word;
 word-break: break-all;   
 }
 
+.user-name {
+  font-family: "SF Pro Text", sans-serif; 
+  font-weight : 600;
+  font-size: 1em;
+  color: rgb(255, 255, 255) ;
+  white-space: normal;     
+  overflow-wrap: break-word; 
+  word-break: break-all;
+}
+
   
  /* === Responsive Media === */
 @media (max-width: 768px) {
